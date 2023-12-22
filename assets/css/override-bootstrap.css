@@ -61,8 +61,11 @@ h2, h3 {
 }
 
 
-.card-img-top {
+img {
     width: 100%;
-    display: block;
     object-fit: cover;
+}
+
+.card-img-top {
+    height: 15vw;
 }

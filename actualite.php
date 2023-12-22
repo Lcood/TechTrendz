@@ -2,15 +2,27 @@
 
  
   require_once __DIR__. "/lib/article.php";
-  $id = $_GET["id"];
-  $article = $articles[$id];
-
   require_once __DIR__. "/lib/menu.php";
-  $mainMenu["actualite.php"] = ["head_title" => $article["title"], "meta_description" => $article["description"], "exclude" => true];
+ 
 
   require_once __DIR__. "/templates/header.php";
 
 
+$error = false;
+
+if (isset($_GET["id"])) {
+    $id = $_GET["id"];
+    $article = getArticleById($pdo, $id);
+
+    if ($article) {
+        $imagePath = getArticleImage($article["image"]);
+        $mainMenu["actualite.php"] = ["head_title" => $article["title"], "meta_description" => $article["description"], "exclude" => true];
+    } else {
+        $error = true;
+    }    
+} else {
+    $error = true;
+}
 
 
 ?>
